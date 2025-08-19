@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expenss</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            border: 0;
+        }
+        body{
+            font-family: sans-serif;
+            background-color: rgba(231, 245, 224, 0.678);
+        }
+        .bookmark-container{
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .bookmark{
+            padding: 20px;
+            width: 350px;
+            min-height: fit-content;
+            background-color: white;
+            border-radius: 7px;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+        }
+        form h1{
+            text-align: center;
+            margin-bottom: 15px;
+            color: #2ec500;
+        }
+        form input:not(:last-of-type){
+            border-radius: 4px;
+            border:1px solid rgb(213, 216, 218);
+            padding: 7px 5px 7px 12px;
+            margin-bottom: 10px;
+        }
+        form input:last-of-type{
+            background-color: #2ec500;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            padding: 7px 0;
+        }
+        .lists{
+            margin-top: 10px;
+            min-height: fit-content;
+            background-color: rgb(255, 255, 255);
+            display: flex; 
+            flex-direction: column;
+        }
+        .lists div{
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            border-radius: 7px;
+            padding: 7px 10px; 
+            border:1px solid rgb(213, 216, 218);
+            background-color: rgba(213, 216, 218, 0.322); 
+            text-transform: capitalize;
+            margin-bottom: 10px;
+        }
+        .lists div a{
+            text-decoration: none;
+            color: #2ec500;
+        }
+        .lists div button{
+            padding: 5px 10px;
+            background-color: rgb(238, 12, 12);
+            color: white;
+            border-radius: 5px;
+        }
+        .lists div button:hover{
+            background-color: rgb(219, 18, 18);
+}
+    </style>
+</head>
+<body>
+    <div class="bookmark-container">
+        <div class="bookmark">
+            <form>
+                <h1>Bookmark Saver</h1>
+                <input type="text" placeholder="Bookmark Name">
+                <input type="text" placeholder="Bookmark Url">
+                <input type="submit" value="Add Bookmark">
+            </form> 
+            <div class="lists">
+            </div>
+        </div>
+        </div>
+    <script>
+        // start variables
+        let BookmarkNameInput=document.getElementsByTagName("input")[0]
+        let BookmarkUrlInput=document.getElementsByTagName("input")[1]
+        let addBookmark=document.getElementsByTagName("input")[2]
+        let lists=document.querySelector(".lists")
+        // end variables
+        addBookmark.onclick=(e)=>{
+            e.preventDefault();
+            if(BookmarkNameInput.value===""||BookmarkUrlInput.value===""){
+                alert("your inputs are empty")
+                return
+            }
+            let div=document.createElement("div")
+            let a=document.createElement("a")
+            let removeBookmark=document.createElement("button")
+            a.href=BookmarkUrlInput.value
+            a.innerText=BookmarkNameInput.value
+            removeBookmark.innerText="Remove"
+            div.appendChild(a)
+            div.appendChild(removeBookmark)
+            lists.appendChild(div)
+            removeBookmark.onclick=()=>lists.removeChild(div);
+        }
+    </script>
+</body>
+</html>
